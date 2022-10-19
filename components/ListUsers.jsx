@@ -1,13 +1,13 @@
 import React, { useDebugValue } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
-import Card from './Card';
+import Cardd from './Cardd';
 
-const ListUsers = ({dtusr, cambiarAct , getUsr}) => {
+const ListUsers = ({dtusr, cambiarAct , getUsr,dark}) => {
   return (
     <>
       {
         dtusr.map(usuario => (
-          <Card key={usuario.id} usuario={usuario} cambiarAct={cambiarAct} actualizar={getUsr} />
+          <Cardd key={usuario.id} usuario={usuario} cambiarAct={cambiarAct} actualizar={getUsr} dark={dark}/>
         ))
       }
     </>

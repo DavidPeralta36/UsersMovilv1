@@ -1,9 +1,12 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View,TextInput,TouchableOpacity,Alert,ScrollView, Pressable   } from 'react-native';
+import { Card } from "@rneui/themed";
 
 
-const Card = ({usuario, cambiarAct, getUsr}) => {
-
+const Cardd = ({usuario, cambiarAct, getUsr, dark}) => {
+  const cambiarD = () => {
+    setDark(!dark)
+  }
   const {id, first, last, photo, active, gender } = usuario
 
   const cambiaractivo = (id) => {
@@ -11,32 +14,16 @@ const Card = ({usuario, cambiarAct, getUsr}) => {
     console.log("Activo cambiado en onlonppress")
 }
   return (
-    <View style={styles.container}>
+    
+    <View style={dark? styles.container : styles.containerDia}>
         <Pressable onLongPress={() => {
           cambiaractivo(id);
-        }}>
-          <Image 
-            source= {{uri: usuario.photo}} 
-            //style={styles.thumbnailDes} 
-            style={active? styles.thumbnail : styles.thumbnailDes}
-            //className={active?'card-photo':'card-photo suspendido'}
-            />
-        </Pressable>
-        {
-          /* 
-            <TouchableOpacity onPress={() => {
-            cambiaractivo(id);
-            }}>
+          }}>
             <Image 
-            source= {{uri: usuario.photo}} 
-            //style={styles.thumbnailDes} 
-            style={active? styles.thumbnail : styles.thumbnailDes}
-            //className={active?'card-photo':'card-photo suspendido'}
-            />
-        </TouchableOpacity>
-          */
-        }
-        
+              source= {{uri: usuario.photo}} 
+              style={active? styles.thumbnail : styles.thumbnailDes}
+              />
+        </Pressable> 
       <View style={styles.nombreCard}>
         {   (active)?
             <>
@@ -50,7 +37,6 @@ const Card = ({usuario, cambiarAct, getUsr}) => {
                 :
                 'Suspendida'
                 }</Text>
-            
         } 
       </View>
         
@@ -60,7 +46,7 @@ const Card = ({usuario, cambiarAct, getUsr}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#68042A',
+    backgroundColor: '#113D8E',
     alignItems: 'center',
     justifyContent: 'center',
     height:250,
@@ -77,21 +63,41 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.00,
-
-elevation: 24,
+    elevation: 24,
   },
+  containerDia: {
+    flex: 1,
+    backgroundColor: '#11352A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height:250,
+    width:250,
+    margin:10,
+    borderRadius:20,
+    borderWidth:2,
+    borderColor:"white",
 
+    shadowColor: "#000",
+    shadowOffset: {
+	  width: 0,
+	  height: 6,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 7.49,
+
+elevation: 7,
+  },
   thumbnail: {
     width: 150,
     height: 150,
     borderRadius:30
-    },
-    thumbnailDes:{
-      width: 150,
-      height: 150,
-      borderRadius:30,
-      opacity:0.5
-    },
+  },
+  thumbnailDes:{
+    width: 150,
+    height: 150,
+    borderRadius:30,
+    opacity:0.5
+  },
   nombreCard:{
     marginTop:14,
     paddingTop:6,
@@ -106,4 +112,4 @@ elevation: 24,
     fontSize: 20,
   },
 });
-export default Card
+export default Cardd
